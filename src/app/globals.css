@@ -67,6 +67,17 @@
   --tag-orange-text: #ea580c;
 }
 
+/* ── Native select option theming ── */
+[data-theme="dark"] option {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+}
+
+[data-theme="light"] option {
+  background-color: #eef1f8;
+  color: #1e293b;
+}
+
 /* ── Base Reset ── */
 html {
   height: 100%;
