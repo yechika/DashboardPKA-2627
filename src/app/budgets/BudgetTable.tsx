@@ -20,9 +20,11 @@ export default function BudgetTable({ budgets }: { budgets: Budget[] }) {
   ).sort();
 
   const filteredBudgets = budgets.filter((b) => {
-    const matchesSearch = b.nama_program
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const matchesSearch =
+      searchQuery === "" ||
+      [b.nama_program, b.pjp, b.bidang, b.waktu, b.freq, b.keterangan].some(
+        (v) => v?.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
     const matchesBidang =
       selectedBidang === "" ||
       b.bidang?.toLowerCase().trim() === selectedBidang.toLowerCase().trim();
@@ -67,6 +69,7 @@ export default function BudgetTable({ budgets }: { budgets: Budget[] }) {
               <th>ID</th>
               <th>No. PKA</th>
               <th>Nama Program</th>
+              <th>PJP</th>
               <th>Waktu</th>
               <th>Freq</th>
               <th className={styles.numericCol}>Penerimaan</th>
@@ -89,6 +92,7 @@ export default function BudgetTable({ budgets }: { budgets: Budget[] }) {
                     {row.nama_program}
                   </button>
                 </td>
+                <td>{row.pjp || "—"}</td>
                 <td>{row.waktu}</td>
                 <td>{row.freq}</td>
                 <td className={`${styles.numericCol} ${styles.income}`}>
@@ -111,7 +115,7 @@ export default function BudgetTable({ budgets }: { budgets: Budget[] }) {
             ))}
             {currentRows.length === 0 && (
               <tr>
-                <td colSpan={9} className={styles.emptyRow}>
+                <td colSpan={10} className={styles.emptyRow}>
                   No budget data found.
                 </td>
               </tr>

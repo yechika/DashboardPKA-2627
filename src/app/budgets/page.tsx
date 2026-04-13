@@ -7,6 +7,7 @@ interface Budget extends RowDataPacket {
   id: number;
   nomor_pka: number;
   nama_program: string;
+  pjp: string;
   waktu: string;
   freq: string;
   penerimaan: number;
@@ -55,6 +56,7 @@ export default async function BudgetsPage() {
     id: b.id,
     nomor_pka: b.nomor_pka,
     nama_program: b.nama_program,
+    pjp: b.pjp ?? "",
     waktu: b.waktu,
     freq: b.freq,
     penerimaan: b.penerimaan,

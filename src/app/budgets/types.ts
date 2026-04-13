@@ -2,6 +2,7 @@ export interface Budget {
   id: number;
   nomor_pka: number;
   nama_program: string;
+  pjp: string;
   waktu: string;
   freq: string;
   penerimaan: number;
